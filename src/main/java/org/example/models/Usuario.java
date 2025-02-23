@@ -7,6 +7,9 @@ public class Usuario {
     private String senha;
     private Perfil perfil;
 
+    public Usuario() {
+    }
+
     public Usuario(int id, String nome, String email, String senha, Perfil perfil) {
         this.nome = nome;
         this.id = id;

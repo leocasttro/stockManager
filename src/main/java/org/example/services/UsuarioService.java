@@ -61,12 +61,16 @@ public class UsuarioService {
 
     public Usuario salvar(Usuario usuario) {
         List<Usuario> usuarios = listarTodos();
-        if (usuario.getId() == 0) {
+
+        boolean idExistente = usuarios.stream().anyMatch(u -> u.getId() == usuario.getId());
+        if (usuario.getId() == 0 || idExistente) {
             int novoId = (int) (usuarios.stream().mapToLong(Usuario::getId).max().orElse(0) + 1);
             usuario.setId(novoId);
         }
+
         usuarios.add(usuario);
         salvarUsuariosEmJSON(usuarios);
+
         return usuario;
     }
 
